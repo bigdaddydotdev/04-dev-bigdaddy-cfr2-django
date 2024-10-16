@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config as env_config
+
+try:
+    from decouple import config
+except:
+    import os
+    config = os.environ.get
+
+# Import the Cloudflare R2 config
+import helpers.cloudflare.settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +33,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-(=8_6$h4-r$%80hbsw*q!wz!7u*5+@1gfgfy(4%lh5@^-v))$%"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = config("DJANGO_DEBUG", cast=bool, default=False)
 
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+
+CSRF_TRUSTED_ORIGINS = ['https://src-broken-dew-5673.fly.dev']  # <-- Updated!
+
 
 
 # Application definition
@@ -103,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-mx"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Mexico_City"
 
 USE_I18N = True
 
@@ -119,5 +134,33 @@ STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+#CLOUDFLARE_R2_CONFIG_OPTIONS = {}
+#
+#bucket_name = config("CLOUDFLARE_R2_BUCKET")
+#endpoint_url = config("CLOUDFLARE_R2_BUCKET_ENDPOINT")
+#access_key = config("CLOUDFLARE_R2_ACCESS_KEY")
+#secret_key = config("CLOUDFLARE_R2_SECRET_KEY")
+#
+#if all([bucket_name, endpoint_url, access_key, secret_key]):
+#    CLOUDFLARE_R2_CONFIG_OPTIONS = {
+#        "bucket_name": config("CLOUDFLARE_R2_BUCKET"),
+#        "default_acl": "public-read",  # "private"
+#        "signature_version": "s3v4",
+#        "endpoint_url": config("CLOUDFLARE_R2_BUCKET_ENDPOINT"),
+#        "access_key": config("CLOUDFLARE_R2_ACCESS_KEY"),
+#        "secret_key": config("CLOUDFLARE_R2_SECRET_KEY"),
+#    }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "helpers.cloudflare.storages.MediaFileStorage",
+        "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
+    },
+    "staticfiles": {
+        "BACKEND": "helpers.cloudflare.storages.StaticFileStorage",
+        "OPTIONS": helpers.cloudflare.settings.CLOUDFLARE_R2_CONFIG_OPTIONS,
+    },
+}
+
