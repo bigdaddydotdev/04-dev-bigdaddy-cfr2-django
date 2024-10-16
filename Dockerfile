@@ -15,13 +15,15 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --only main --no-root --no-interaction
 COPY . /code
 
-RUN apt-get update && apt-get install -y \
-    sqlite3 \
-    && rm -rf /var/lib/apt/lists/*
-RUN poetry run python manage.py collectstatic --noinput
+#RUN python manage.py collectstatic --noinput
 RUN chmod +x startup.sh
 EXPOSE 8000
 ENTRYPOINT ["./startup.sh"]
 
 
 #CMD ["gunicorn","--bind",":8000","--workers","2","myapp.wsgi"]
+
+RUN apt-get update && apt-get install -y \
+    sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
+

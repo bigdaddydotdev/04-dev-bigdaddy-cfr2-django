@@ -37,7 +37,7 @@ SECRET_KEY = "django-insecure-(=8_6$h4-r$%80hbsw*q!wz!7u*5+@1gfgfy(4%lh5@^-v))$%
 DEBUG = config("DJANGO_DEBUG", cast=bool, default=False)
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.fly.dev']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django-cf-r2-poetry.fly.dev']
 
 CSRF_TRUSTED_ORIGINS = ['https://bigdaddy.dev', 'https://www.bigdaddy.dev', 'https://django-cf-r2-poetry.fly.dev']  # <-- Updated!
 
