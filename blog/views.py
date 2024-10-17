@@ -4,7 +4,9 @@ from . import paginator
 from .models import BlogPost
 
 
+
 # Create your views here.
+
 def blog_post_detail_view(request, id=None):
     object = get_object_or_404(BlogPost, id=id)
     return render(request, "blog/detail.html", {"object": object, "instance": object})

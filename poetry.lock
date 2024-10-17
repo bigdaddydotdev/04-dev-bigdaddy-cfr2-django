@@ -220,6 +220,19 @@ files = [
 ]
 
 [[package]]
+name = "paginator"
+version = "0.5.1"
+description = "Paginator for SQLAlchemy query object, list or iterable"
+optional = false
+python-versions = "*"
+files = [
+    {file = "Paginator-0.5.1.tar.gz", hash = "sha256:a76e445a5462d3fe02761b0b0ea69780e68d57bd328d1abe00916c31f646690e"},
+]
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 name = "pathspec"
 version = "0.12.1"
 description = "Utility library for gitignore style pattern matching of file paths."
@@ -437,4 +450,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "e16bd386a87d9ce74da7b0bd66b310689548e9e22a3836479ae1e96689d52571"
+content-hash = "0542f4abe01d04110305e1bd40d78cc4f3534e54846c38a1fb9619a319970a23"
