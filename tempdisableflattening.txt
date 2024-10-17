@@ -1,0 +1,51 @@
+`
+
+PATCH https://api.cloudflare.com/client/v4/accounts/<account_id>/storage/<bucket_id>
+
+`json
+
+{
+
+“cname_flattening”: false
+
+}
+
+Here’s an example of the complete request using curl:
+
+`bash
+
+curl -X PATCH \
+
+https://api.cloudflare.com/client/v4/accounts/477082f5c9678c608889bd8f03f7b807/storage/<bucket_id> \
+
+-H ‘Content-Type: application/json’ \
+
+-H ‘Authorization: Bearer <api_token>’ \
+
+-d ‘{“cname_flattening”: false}’
+
+`
+
+Replace <account_id>, <bucket_id>, and <api_token> with the corresponding values.
+
+After making this request, CNAME flattening should be disabled for your R2 public bucket.
+
+Source: https://developers.cloudflare.com/r2/api/r2-objects/#update-an-r2-bucket
+
+
+Sources:
+R2 Object Storage
+CNAME flattening
+Protect an R2 Bucket with Cloudflare Access``
+
+curl -X GET \
+
+https://api.cloudflare.com/client/v4/accounts/477082f5c9678c608889bd8f03f7b807/storage/buckets?name=bigdaddy-gatitos-blog\
+
+-H ‘Content-Type: application/json’ \
+
+-H ‘Authorization: Bearer OhxWoRFy59L4MQIiQPaA8lPORYEM9nh1xRkwvfHv' 
+
+`
+
+Replace <account_id> with your

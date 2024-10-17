@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-% extends "base.html" %}
+{% extends "base.html" %}
+{% load static %}
+
 
 {% block title %}
   Gatitos 
@@ -7,10 +9,29 @@
 
 
 {% block content %}
+
+<header class="p-6 bg-gray-50">
+
   <h1>Nuestros Gatos</h1>
 
-  <h3>Gatos</h3>
-  
-  <p>Síguenos para conocer todos los gatos que amamos<a href="blog/">Blog</a></p>
+
+  <p>Síguenos para conocer todos los gatos que amamos<a href="blog/">  Blog  </a></p>
+  </header>  
+
+
+  <body id="bg" style="background-image: url('https://bigdaddy.dev/static/background.png')">
+
+<style>
+
+.bg {
+
+      background-size: 100%;
+
+      background-position: center center;
+
+      background-repeat: no-repeat;
+}
+
+</style>
   
 {% endblock %}

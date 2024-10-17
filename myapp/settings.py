@@ -134,6 +134,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+CLOUDFLARE_R2_STATIC_URL = f"{config('CLOUDFLARE_R2_BUCKET_ENDPOINT')}/"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 #CLOUDFLARE_R2_CONFIG_OPTIONS = {}

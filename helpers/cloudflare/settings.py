@@ -27,3 +27,5 @@ if all([bucket_name, endpoint_url, access_key, secret_key]):
         "access_key": config("CLOUDFLARE_R2_ACCESS_KEY"),
         "secret_key": config("CLOUDFLARE_R2_SECRET_KEY"),
     }
+
+

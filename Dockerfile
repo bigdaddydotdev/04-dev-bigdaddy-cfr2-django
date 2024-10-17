@@ -15,7 +15,7 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --only main --no-root --no-interaction
 COPY . /code
 
-#RUN python manage.py collectstatic --noinput
+#RUN python manage.py collectstatic --noinput -v 3
 RUN chmod +x startup.sh
 EXPOSE 8000
 ENTRYPOINT ["./startup.sh"]

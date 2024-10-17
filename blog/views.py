@@ -2,10 +2,16 @@ from django.shortcuts import get_object_or_404, render
 
 from . import paginator
 from .models import BlogPost
+from django.conf import settings
+
 
 
 
 # Create your views here.
+def your_view(request):
+  image_url = settings.CLOUDFLARE_R2_STATIC_URL + 'background.png'
+  # ... other logic for your view
+  return render(request, 'main.html', {'image_url': image_url})
 
 def blog_post_detail_view(request, id=None):
     object = get_object_or_404(BlogPost, id=id)
